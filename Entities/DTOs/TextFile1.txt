@@ -1,0 +1,3 @@
+﻿//DTO da biz join gibi tablolarımızı yazarız
+
+IEntity demek sen bir veritabanı tablosu musun demek ??
