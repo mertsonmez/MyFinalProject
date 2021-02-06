@@ -1,9 +1,10 @@
-﻿using Entities.Concrete;
+﻿using Core.DataAccess;
+using Entities.Concrete;
 using System.Collections.Generic;
 
 namespace DataAccess.Abstract
 {
-    public interface ICategoryDal : IEntityRepository<Customer>
+    public interface ICategoryDal : IEntityRepository<Category>
     {
         //Generic repository design pattern ile yapalım
         //burada

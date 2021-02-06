@@ -1,0 +1,4 @@
+﻿**Core katmanı diğer katmanları referans almaz !!
+
+Core katmanı bizim ana
+

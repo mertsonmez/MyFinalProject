@@ -9,14 +9,7 @@ namespace DataAccess.Concrete.EntityFramework
         /*
          * Hangi veri Tabanı ??
          * Hangi tablolarla hangi entitiyler bağlantılı ??
-         * 
-         
-         
          */
-
-
-
-
 
         //Bu method senin projenin hangi veritabanı ile ilişkilendirildiğini belittiğin yer !!!
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -29,11 +22,7 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Customer> Customers { get; set; }
-
-
-
-
-
+        public DbSet<Order> Orders { get; set; }
 
 
     }

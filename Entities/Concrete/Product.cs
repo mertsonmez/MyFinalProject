@@ -1,4 +1,4 @@
-﻿using Entities.Abstract; //bunlara işaretleme diyoruz..
+﻿using Core.Entities; //bunlara işaretleme diyoruz..
 
 namespace Entities.Concrete
 {

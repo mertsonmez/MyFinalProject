@@ -1,9 +1,9 @@
-﻿using Entities.Abstract;
+﻿using Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace DataAccess.Abstract
+namespace Core.DataAccess
 {
     //generic constraint (generic kısıt demek)
     //class : reference type olabilir demek.
@@ -29,4 +29,8 @@ namespace DataAccess.Abstract
 
 
     }
+
+    //IEntityRepository i Data Access projesinden Core projesindeki Data access e koyduk!!
+
+
 }
