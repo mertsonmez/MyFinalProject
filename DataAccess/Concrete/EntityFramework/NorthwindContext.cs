@@ -1,29 +1,21 @@
 ﻿using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
-
+using System;
+using System.Collections.Generic;
+using System.Text;
 namespace DataAccess.Concrete.EntityFramework
 {
-    //Context nesnesi: db tabloları ile proje classlarını bağlamak.context demek veri tabanı ile kendi entitilerimizi ilişkilendirdiğimiz yerdir.
+    //Context : Db tablolari ile proje class'larini baglamak.
     public class NorthwindContext : DbContext
     {
-        /*
-         * Hangi veri Tabanı ??
-         * Hangi tablolarla hangi entitiyler bağlantılı ??
-         */
-
-        //Bu method senin projenin hangi veritabanı ile ilişkilendirildiğini belittiğin yer !!!
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)  //Kisayol: "override on" tab tab.
         {
-            //connection stringde büyük küçük farketmez sql case insensitive olduğu için.
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB; Database=Northwind; Trusted_Connection=true;");
-        }
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb; Database=Northwind; Trusted_Connection=true");
 
-        //benim hangi classım hangi tabloya karşılık geliyor ?? burada belirtiyoruz.
+        }
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Order> Orders { get; set; }
-
-
     }
 }
