@@ -5,19 +5,20 @@ using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
-using System;
 using System.Collections.Generic;
 
 namespace Business.Concrete
 {
     public class ProductManager : IProductService
     {
-        IProductDal _productDal;
+        //loosely coupled --
+        IProductDal _productDal; // bunların karşılığı nedir i biz dependencyresolvers da tanımlayacağız
 
         public ProductManager(IProductDal productDal)
         {
             _productDal = productDal;
         }
+        //loosely coupled --
 
         public IResult Add(Product product)
         {

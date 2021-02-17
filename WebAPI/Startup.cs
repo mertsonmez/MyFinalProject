@@ -31,9 +31,13 @@ namespace WebAPI
             services.AddControllers();
             //AddSingleton demek --> bana arka planda bir referans oluþtur... 
             //IoC ler bizim yerimize new liyor. birisi senden IProduct service isterse ona birtane product manager oluþtur onu ver diyor.
-            services.AddSingleton<IProductService, ProductManager>();
+
+            //services.AddSingleton<IProductService, ProductManager>(); //kapattýk
+
             //biri consta IProductService isterse ona product manager new i ver demek 
-            services.AddSingleton<IProductDal, EfProductDal>();
+
+            //services.AddSingleton<IProductDal, EfProductDal>(); // kapattýk
+
             //biri consta IProductDal isterse ona EfProductDal i ver demek 
 
         }
