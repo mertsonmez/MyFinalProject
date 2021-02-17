@@ -1,10 +1,14 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
+using Core.CrossCuttingConserns.Validation;
 using Core.Utilities.Results;
 using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
+using FluentValidation;
 using System.Collections.Generic;
 
 namespace Business.Concrete
@@ -20,21 +24,54 @@ namespace Business.Concrete
         }
         //loosely coupled --
 
+        [ValidationAspect(typeof(ProductValidator))]//add methodunu doğrula productValidator a göre !!
         public IResult Add(Product product)
         {
             //business codes
+            //validation bu kodlar birbirinden ayrı olmalı
+
+            //fluent validation da yazdık bu kodları o yüzden commentliyorum
+            //if (product.UnitPrice <= 0)
+            //{
+            //    return new ErrorResult(Messages.UnitPriceInvalid)
+            //    //return new ErrorResult(" ");
+            //}
+
+            //core a aktarıyoruz ı yüzden kestik
+            //var context = new ValidationContext<Product>(product);
+            //ProductValidator productValidator = new ProductValidator();
+            //var result = productValidator.Validate(context); //ProductValiidator'u kullanarak ilgili sonuca ulas.
+            //if (!result.IsValid) //Eger sonuc gecerli degilse hata firlat.
+            //{
+            //    throw new ValidationException(result.Errors);
+            //}
+
+            //ValidationTool.Validate(new ProductValidator(), product);
+           
+            /*
+             * loglama
+             * cacheremove
+             * performans
+             * transaction
+
+                bunlara öyle bir yapı kuracağız ki otomatik olacak.
+             */
+            //iş kuralı yazacağız -- business codes
+
+
 
             _productDal.Add(product);
 
             //result is a new result
             //Result result = new Result();
 
-            if (product.ProductName.Length < 2)
-            {
-                //Magic String dediğimiz bir anti pattern var !!
-                //Her yerde tekrarlarsın sonra projede standart olmayan mesajlar oluşur!!!
-                return new ErrorResult(Messages.ProductNameInvalid);
-            }
+            //fluent validation ile yazıldı !! commited
+            //if (product.ProductName.Length < 2)
+            //{
+            //    //Magic String dediğimiz bir anti pattern var !!
+            //    //Her yerde tekrarlarsın sonra projede standart olmayan mesajlar oluşur!!!
+            //    return new ErrorResult(Messages.ProductNameInvalid);
+            //}
 
             //return new Result(); //result sınıfını newledik ama propertyleri set etmedik
             return new SuccessResult(Messages.ProductAdded); // bunu yapabilmenin yolu constructor a parametre göndermekten geçiyor
