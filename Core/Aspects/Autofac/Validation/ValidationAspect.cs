@@ -14,9 +14,10 @@ namespace Core.Aspects.Autofac.Validation
         private Type _validatorType;
         public ValidationAspect(Type validatorType)
         {
+            //defensive coding
             if (!typeof(IValidator).IsAssignableFrom(validatorType))
             {
-                throw new Exception("Bu bir doğrulama sınıfı değil");
+                throw new Exception("Bu bir doğrulama sınıfı değil"); //bir validator değil demek
             }
 
             _validatorType = validatorType;
@@ -24,9 +25,9 @@ namespace Core.Aspects.Autofac.Validation
         protected override void OnBefore(IInvocation invocation)
         {
             //reflection --> çalışma anında birşeyleri çalıştırabilmemizi sağlıyor!! Activator.CreateInstance
-            var validator = (IValidator)Activator.CreateInstance(_validatorType);
+            var validator = (IValidator)Activator.CreateInstance(_validatorType);//Tekrar...çalışma anında instanceını oluşturuyor ve IValidator türünde kullanılabilir hale getiriyor
             //productValidatorun(onu gönderdiğimiz için) çalışma tipini bul diyor
-            var entityType = _validatorType.BaseType.GetGenericArguments()[0];
+            var entityType = _validatorType.BaseType.GetGenericArguments()[0];//tekrar... product validator un base type ının getGenericArguments inin 0.sı yani 1.si
             //parametrelerini bul --> ilgili methodun parametrelerini
             //!!! invocation method demek !!!
             //validatorun tipine eşit olan parametreleri git bul diyor !!

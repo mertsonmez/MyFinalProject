@@ -21,5 +21,7 @@ namespace Business.Abstract
 
         //void yerine IResult yaptım
         IResult Add(Product product);
+
+        IResult Update(Product product);
     }
 }
