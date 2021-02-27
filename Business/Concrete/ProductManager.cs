@@ -36,7 +36,9 @@ namespace Business.Concrete
         }
         //loosely coupled --
 
-        //[ValidationAspect(typeof(ProductValidator))]//add methodunu doğrula productValidator a göre !!
+        //Claim(iddia etmek demek)
+        //[SecuredOperation("product.add,admin")]
+        [ValidationAspect(typeof(ProductValidator))]//add methodunu doğrula productValidator a göre !!
         public IResult Add(Product product)
         {
             //log u başta çalıştırdık.
