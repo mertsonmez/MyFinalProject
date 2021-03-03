@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.CCS;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
@@ -37,7 +38,8 @@ namespace Business.Concrete
         //loosely coupled --
 
         //Claim(iddia etmek demek)
-        //[SecuredOperation("product.add,admin")]
+        //[CacheAspect]
+        [SecuredOperation("product.add,admin")]
         [ValidationAspect(typeof(ProductValidator))]//add methodunu doğrula productValidator a göre !!
         public IResult Add(Product product)
         {
@@ -145,6 +147,7 @@ namespace Business.Concrete
 
         }
 
+        [CacheAspect] //key,value //InMemeoryCache kullanacağız
         public IDataResult<List<Product>> GetAll()
         {
             //İş Kodları
@@ -191,9 +194,8 @@ namespace Business.Concrete
                 return new ErrorResult(Messages.ProductCountOfCategoryError);
             }
 
-
-
-            throw new NotImplementedException();
+            return new SuccessResult();
+            //throw new NotImplementedException();
         }
 
         //iş kodu parçacığı

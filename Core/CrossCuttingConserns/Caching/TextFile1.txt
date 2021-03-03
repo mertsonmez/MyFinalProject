@@ -1,0 +1,3 @@
+﻿Mem Cache diye de third party birşey var oda iyi ama redis bu konuda bize en iyi olacak çözüm olabilir !!
+
+biz microsoftun kendi kütüphanesini kullanacağız ve içinde IMemoryCache diye interfacei var
