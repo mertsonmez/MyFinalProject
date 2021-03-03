@@ -23,5 +23,10 @@ namespace Business.Abstract
         IResult Add(Product product);
 
         IResult Update(Product product);
+
+        //Transaction Yönetimi uygulamalarda tutarlılığı korumak adına yaptığımız bir yöntem !!
+        IResult AddTransactionalTest(Product product);
+
+
     }
 }
