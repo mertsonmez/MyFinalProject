@@ -1,5 +1,7 @@
 using Business.Abstract;
 using Business.Concrete;
+using Core.DependencyResolvers;
+using Core.Extensions;
 using Core.Utilities.IoC;
 using Core.Utilities.Security.Encryption;
 using Core.Utilities.Security.JWT;
@@ -8,6 +10,7 @@ using DataAccess.Concrete.EntityFramework;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -45,11 +48,13 @@ namespace WebAPI
 
             //biri consta IProductDal isterse ona EfProductDal i ver demek 
 
+            //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options =>
-                {
+                .AddJwtBearer(options => {
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuer = true,
@@ -62,7 +67,10 @@ namespace WebAPI
                     };
                 });
 
-            ServiceTool.Create(services);
+            services.AddDependencyResolvers(new ICoreModule[] { //ister array ister param olarak yapýn.
+                new CoreModule()
+            });
+            //ServiceTool.Create(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
