@@ -73,5 +73,19 @@ namespace WebAPI.Controllers
         //güncelleme ve silme içinde HttpPost kullanabilirsin !! yada güncelleme için HttpPut ve silme için HttpDelete kullanırsan kategorileştirmiş olursun !!
         //ama sektörde
 
+        [HttpGet("getbycategory")]
+        public IActionResult GetByCategory(int categoryId)
+        {
+            var result = _productService.GetAllByCategoryId(categoryId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+        }
+
+        //intensional programing !!! hocanın dediği üzere niyet güdümlü programlama :D contollerdan başlanıyor tasarlamaya
+
     }
 }

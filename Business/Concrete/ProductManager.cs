@@ -18,6 +18,7 @@ using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 namespace Business.Concrete
 {
@@ -154,6 +155,8 @@ namespace Business.Concrete
         [CacheAspect] //key,value //InMemeoryCache kullanacağız
         public IDataResult<List<Product>> GetAll()
         {
+
+            Thread.Sleep(5000);//milisaniye cinsinden sistemi uyutuyoruz.
             //İş Kodları
             //if (DateTime.Now.Hour == 23)
             //{

@@ -50,6 +50,10 @@ namespace WebAPI
 
             //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
+            //10.03.2021
+            //CORS control for frotend
+            services.AddCors();
+
 
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
@@ -80,6 +84,10 @@ namespace WebAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            //UseHttpsRedirection üzerine eklememiz gerekiyor
+            //"localhost:4200" adresten Ne gelirse gelsin izin ver ben bu web siteý biliyor ve güveniytorum demek!!
+            app.UseCors(builder => builder.WithOrigins("http://localhost:4200/").AllowAnyHeader());
 
             app.UseHttpsRedirection();
 
