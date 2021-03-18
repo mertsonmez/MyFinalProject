@@ -15,6 +15,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 
 namespace WebAPI
 {
@@ -50,15 +51,24 @@ namespace WebAPI
 
             //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
+            //Adding SwaggerUI for Api 17.03.2021
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc(name: "v1", new OpenApiInfo { Title = "My Final Project Api", Version = "v1" });
+            });
+
+
+
             //10.03.2021
             //CORS control for frotend
             services.AddCors();
 
 
-            var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
+            var tokenOptions = Configuration.GetSection(key:"TokenOptions").Get<TokenOptions>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options => {
+                .AddJwtBearer(options =>
+                {
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuer = true,
@@ -90,6 +100,14 @@ namespace WebAPI
             app.UseCors(builder => builder.WithOrigins("http://localhost:4200/").AllowAnyHeader());
 
             app.UseHttpsRedirection();
+
+            //Add swagger
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c => 
+            {
+                c.SwaggerEndpoint(url: "/swagger/v1/swagger.json", name: "My Final Project Api v1");
+            });
 
             app.UseRouting();
 
