@@ -96,8 +96,8 @@ namespace WebAPI
             }
 
             //UseHttpsRedirection üzerine eklememiz gerekiyor
-            //"localhost:4200" adresten Ne gelirse gelsin izin ver ben bu web siteý biliyor ve güveniytorum demek!!
-            app.UseCors(builder => builder.WithOrigins("http://localhost:4200/").AllowAnyHeader());
+            //"localhost:4200" adresten Ne gelirse gelsin izin ver ben bu web siteý biliyor ve güveniyorum demek!!
+            app.UseCors(builder => builder.WithOrigins("http://localhost:4200/").AllowAnyHeader().AllowAnyOrigin());
 
             app.UseHttpsRedirection();
 
