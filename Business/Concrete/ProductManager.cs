@@ -43,7 +43,7 @@ namespace Business.Concrete
 
         //Claim(iddia etmek demek)
         //[CacheAspect]
-        [SecuredOperation("product.add,admin")]
+        //[SecuredOperation("product.add,admin")]
         [ValidationAspect(typeof(ProductValidator))]//add methodunu doğrula productValidator a göre !!
         [CacheRemoveAspect("IProductService.Get")]
         public IResult Add(Product product)

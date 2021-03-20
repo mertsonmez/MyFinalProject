@@ -95,6 +95,9 @@ namespace WebAPI
                 app.UseDeveloperExceptionPage();
             }
 
+            //middleware ekliyoruz.
+            app.ConfigureCustomExceptionMiddleware();
+
             //UseHttpsRedirection üzerine eklememiz gerekiyor
             //"localhost:4200" adresten Ne gelirse gelsin izin ver ben bu web siteý biliyor ve güveniyorum demek!!
             app.UseCors(builder => builder.WithOrigins("http://localhost:4200/").AllowAnyHeader().AllowAnyOrigin());
@@ -112,6 +115,8 @@ namespace WebAPI
             app.UseRouting();
 
             //Middleware asp yaþam döngüsünde hangi yapýlarýn devreye gireceðini tanýmlýyorsunuz.
+
+
             app.UseAuthentication();
 
             app.UseAuthorization();
