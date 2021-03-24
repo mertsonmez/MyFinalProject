@@ -26,11 +26,12 @@ namespace Business.Constants
 
         public static string AuthorizationDenied = "Yetkiniz yok !!";
 
-        public static string UserAlreadyExists { get; internal set; }
-        public static string SuccessfulLogin { get; internal set; }
-        public static User UserNotFound { get; internal set; }
-        public static User PasswordError { get; internal set; }
-        public static string UserRegistered { get; internal set; }
-        public static string AccessTokenCreated { get; internal set; }
+        public static string UserAlreadyExists = "Kullanıcı Mevcut";
+        public static string SuccessfulLogin = "Giriş Başarılı";
+        public static string UserNotFound = "Kullanıcı bulunamadı!";
+        public static string PasswordError = "Parola hatası";
+        public static string UserRegistered = "Kullanıcı kaydı yapıldı";
+
+        public static string AccessTokenCreated = "Token Oluşturuldu !!";
     }
 }
